@@ -2,7 +2,7 @@ import mongoose, { mongo, startSession } from "mongoose";
 import Post from "../models/Post";
 import User from "../models/User";
 
-export const getAllPosts = async (req, res) => {
+export const listPosts = async (req, res) => {
   let posts;
   try {
     posts = await Post.find().populate("user");
@@ -16,16 +16,15 @@ export const getAllPosts = async (req, res) => {
 
   return res.status(200).json({ posts });
 };
-export const addPost = async (req, res) => {
-  const { title, description, location, date, image, user } = req.body;
+
+export const createPost = async (req, res) => {
+  const { title, description, date, image, user } = req.body;
 
   if (
     !title &&
     title.trim() === "" &&
     !description &&
     description.trim() === "" &&
-    !location &&
-    location.trim() === "" &&
     !date &&
     !user &&
     !image &&
@@ -34,14 +33,14 @@ export const addPost = async (req, res) => {
     return res.status(422).json({ message: "Invalid Data" });
   }
 
-  let existingUser;
+  let currentUser;
   try {
-    existingUser = await User.findById(user);
+    currentUser = await User.findById(user);
   } catch (err) {
     return console.log(err);
   }
 
-  if (!existingUser) {
+  if (!currentUser) {
     return res.status(404).json({ message: "User not found" });
   }
 
@@ -52,15 +51,14 @@ export const addPost = async (req, res) => {
       title,
       description,
       image,
-      location,
       date: new Date(`${date}`),
       user,
     });
 
     const session = await mongoose.startSession();
     session.startTransaction();
-    existingUser.posts.push(post);
-    await existingUser.save({ session });
+    currentUser.posts.push(post);
+    await currentUser.save({ session });
     post = await post.save({ session });
     session.commitTransaction();
   } catch (err) {
@@ -91,15 +89,13 @@ export const getPostById = async (req, res) => {
 
 export const updatePost = async (req, res) => {
   const id = req.params.id;
-  const { title, description, location, image } = req.body;
+  const { title, description, image } = req.body;
 
   if (
     !title &&
     title.trim() === "" &&
     !description &&
     description.trim() === "" &&
-    !location &&
-    location.trim() === "" &&
     !image &&
     image.trim() === ""
   ) {
@@ -112,7 +108,6 @@ export const updatePost = async (req, res) => {
       title,
       description,
       image,
-      location,
     });
   } catch (err) {
     return console.log(err);
@@ -142,5 +137,5 @@ export const deletePost = async (req, res) => {
     return res.status(500).json({ message: "Unable to delete" });
   }
 
-  return res.status(200).json({ message: "Deleted Successfully" });
+  return res.status(200).json({ message: "Post Deleted Successfully" });
 };
