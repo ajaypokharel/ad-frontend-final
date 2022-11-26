@@ -1,17 +1,17 @@
 import { Router } from "express";
 import {
-  addPost,
+  createPost,
   deletePost,
-  getAllPosts,
+  listPosts,
   getPostById,
   updatePost,
 } from "../controllers/post-controller";
 
 const postRouter = Router();
 
-postRouter.get("/", getAllPosts);
+postRouter.get("/", listPosts);
 postRouter.get("/:id", getPostById);
-postRouter.post("/", addPost);
+postRouter.post("/", createPost);
 postRouter.put("/:id", updatePost);
 postRouter.delete("/:id", deletePost);
 

@@ -44,12 +44,12 @@ export const signup = async (req, res, next) => {
   ) {
     return res.status(422).json({ message: "Inavalid Data" });
   }
-
-  const hashedPassword = hashSync(password);
   let user;
 
+  const hashPass = hashSync(password);
+
   try {
-    user = new User({ email, name, password: hashedPassword, hobby });
+    user = new User({ email, name, password: hashPass, hobby });
     await user.save();
   } catch (err) {
     return console.log(err);
@@ -68,16 +68,16 @@ export const login = async (req, res, next) => {
     return res.status(422).json({ message: "Inavalid Data" });
   }
 
-  let existingUser;
+  let currentUser;
   try {
-    existingUser = await User.findOne({ email });
+    currentUser = await User.findOne({ email });
   } catch (err) {
     return console.log(err);
   }
-  if (!existingUser) {
+  if (!currentUser) {
     return res.status(404).json({ message: "No user found" });
   }
-  const isPasswordCorrect = compareSync(password, existingUser.password);
+  const isPasswordCorrect = compareSync(password, currentUser.password);
 
   if (!isPasswordCorrect) {
     return res.status(400).json({ message: "Incorrect Password" });
@@ -85,5 +85,5 @@ export const login = async (req, res, next) => {
 
   return res
     .status(200)
-    .json({ id: existingUser._id, message: "Login Successfull" });
+    .json({ id: currentUser._id, message: "Login Successfull" });
 };
