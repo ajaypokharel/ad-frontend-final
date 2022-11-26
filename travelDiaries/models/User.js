@@ -15,10 +15,6 @@ const userSchema = new Schema({
     required: true,
     minLength: 6,
   },
-  hobby: {
-    type: String,
-    required: true,
-  },
   posts: [{ type: mongoose.Types.ObjectId, ref: "Post" }],
 });
 

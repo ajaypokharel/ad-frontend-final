@@ -33,7 +33,7 @@ export const getUserById = async (req, res) => {
 };
 
 export const signup = async (req, res, next) => {
-  const { name, email, password, hobby } = req.body;
+  const { name, email, password} = req.body;
   if (
     !name &&
     name.trim() === "" &&
@@ -49,7 +49,7 @@ export const signup = async (req, res, next) => {
   const hashPass = hashSync(password);
 
   try {
-    user = new User({ email, name, password: hashPass, hobby });
+    user = new User({ email, name, password: hashPass });
     await user.save();
   } catch (err) {
     return console.log(err);

@@ -20,5 +20,5 @@ const dbUrl = `mongodb+srv://ajayfied:${adminPass}@cluster0.ijwa2eo.mongodb.net/
 
 mongoose
   .connect(dbUrl)
-  .then(() => app.listen(3001, () => console.log("Listening to Port 3001...")))
+  .then(() => app.listen(5000, () => console.log("Listening to Port 5000...")))
   .catch((err) => console.log(err));
