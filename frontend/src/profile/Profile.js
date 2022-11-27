@@ -34,21 +34,34 @@ const Profile = () => {
             padding={2}
           >
             User Profile
+          
           </Typography>
-          <Typography fontFamily={"quicksand"} padding={1} textAlign="left">
+          <Box textAlign='center' m={6}>
+          
+          <Typography fontFamily={"quicksand"} padding={1} textAlign="center">
             Name: {user.name}
           </Typography>
-          <Typography fontFamily={"quicksand"} padding={1} textAlign="left">
+          <Typography fontFamily={"quicksand"} padding={1} textAlign="center">
             Email: {user.email}
           </Typography>
+          
           <Button
             onClick={handleClick}
-            sx={{ mr: "auto", width: "15%" }}
-            color="warning"
+            sx={{ mr: "auto", width: "15%",bgcolor:"#ff4d4d" }} 
             variant="contained"
+            
+    
           >
             Logout
           </Button>
+
+          </Box>
+
+          <Typography fontFamily={"quicksand"} textAlign="center" fontSize={60}>
+
+          My MMA Stories
+
+            </Typography>
           <Box
             display="flex"
             flexDirection={"column"}
