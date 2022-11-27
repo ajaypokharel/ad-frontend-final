@@ -2,14 +2,16 @@ import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { getUserDetails } from "../api-helpers/helpers";
-import DiaryItem from "../diaries/DiaryItem";
+import StoryItem from "../stories/StoryItem";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store";
 import { useNavigate } from "react-router-dom";
+
 const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user, setUser] = useState();
+  
   useEffect(() => {
     getUserDetails()
       .then((data) => setUser(data.user))
@@ -54,7 +56,7 @@ const Profile = () => {
             alignItems={"center"}
           >
             {user.posts.map((post, index) => (
-              <DiaryItem
+              <StoryItem
                 key={index}
                 title={post.title}
                 date={post.date}

@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import { addPost } from "../api-helpers/helpers";
 import { useNavigate } from "react-router-dom";
-const Add = () => {
+
+const CreatePost = () => {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     title: "",
     description: "",
-    location: "",
     imageUrl: "",
     date: "",
   });
@@ -18,30 +18,28 @@ const Add = () => {
       [e.target.name]: e.target.value,
     }));
   };
+
   const onResReceived = (data) => {
-    console.log(data);
-    navigate("/diaries");
+    navigate("/stories");
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
     addPost(inputs)
       .then(onResReceived)
       .catch((err) => console.log(err));
   };
+  
   return (
     <Box display="flex" flexDirection={"column"} width="100%" height="100%">
       <Box display="flex" margin="auto" padding={2}>
         <Typography
           fontWeight={"bold"}
           variant="h4"
-          fontFamily={"dancing script"}
+          fontFamily={"sans-serif"}
         >
-          Add Your Travel Diary
+          Add Your Favorite MMA Story
         </Typography>
-        <TravelExploreIcon
-          sx={{ fontSize: "40px", paddingLeft: 1, color: "lightcoral  " }}
-        />
       </Box>
       <form onSubmit={handleSubmit}>
         <Box
@@ -75,15 +73,6 @@ const Add = () => {
             variant="standard"
             margin="normal"
           />
-
-          <FormLabel sx={{ fontFamily: "quicksand" }}>Location</FormLabel>
-          <TextField
-            onChange={handleChange}
-            name="location"
-            value={inputs.location}
-            variant="standard"
-            margin="normal"
-          />
           <FormLabel sx={{ fontFamily: "quicksand" }}>Date</FormLabel>
           <TextField
             type="date"
@@ -95,11 +84,10 @@ const Add = () => {
           />
           <Button
             type="submit"
-            color="warning"
-            sx={{ width: "50%", margin: "auto", mt: 2, borderRadius: 7 }}
+            sx={{ width: "30%", margin: "auto", mt: 4, borderRadius: 3 }}
             variant="contained"
           >
-            Post
+            Submit
           </Button>
         </Box>
       </form>
@@ -107,4 +95,4 @@ const Add = () => {
   );
 };
 
-export default Add;
+export default CreatePost;

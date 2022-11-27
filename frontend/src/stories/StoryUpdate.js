@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { getPostDetails, postUpdate } from "../api-helpers/helpers";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 
-const DiaryUpdate = () => {
+const StoryUpdate = () => {
   const [post, setPost] = useState();
   const [inputs, setInputs] = useState({
     title: "",
@@ -91,15 +91,6 @@ const DiaryUpdate = () => {
               margin="normal"
             />
 
-            <FormLabel sx={{ fontFamily: "quicksand" }}>Location</FormLabel>
-            <TextField
-              onChange={handleChange}
-              name="location"
-              value={inputs.location}
-              variant="standard"
-              margin="normal"
-            />
-
             <Button
               type="submit"
               color="warning"
@@ -115,4 +106,4 @@ const DiaryUpdate = () => {
   );
 };
 
-export default DiaryUpdate;
+export default StoryUpdate;

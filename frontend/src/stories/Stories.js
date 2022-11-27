@@ -1,9 +1,9 @@
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { getAllPosts } from "../api-helpers/helpers";
-import DiaryItem from "./DiaryItem";
+import StoryItem from "./StoryItem";
 
-const Diaries = () => {
+const Stories = () => {
   const [posts, setPosts] = useState();
   useEffect(() => {
     getAllPosts()
@@ -21,7 +21,7 @@ const Diaries = () => {
       {" "}
       {posts &&
         posts.map((item, index) => (
-          <DiaryItem
+          <StoryItem
             date={new Date(`${item.date}`).toLocaleDateString()}
             description={item.description}
             image={item.image}
@@ -37,4 +37,4 @@ const Diaries = () => {
   );
 };
 
-export default Diaries;
+export default Stories;

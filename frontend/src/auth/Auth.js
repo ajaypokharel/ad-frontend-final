@@ -4,12 +4,14 @@ import { sendAuthRequest } from "../api-helpers/helpers";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store";
 import { useNavigate } from "react-router-dom";
+
 const Auth = () => {
   const naviagte = useNavigate();
   const dispatch = useDispatch();
-  const [isSignup, setIsSignup] = useState(true);
+  const [hasSignedUp, setHasSignedUp] = useState(true);
+
   const onResReceived = (data) => {
-    if (isSignup) {
+    if (hasSignedUp) {
       localStorage.setItem("userId", data.user._id);
     } else {
       localStorage.setItem("userId", data.id);
@@ -21,7 +23,7 @@ const Auth = () => {
     e.preventDefault();
     console.log(inputs);
 
-    if (isSignup) {
+    if (hasSignedUp) {
       sendAuthRequest(true, inputs)
         .then(onResReceived)
         .catch((err) => console.log(err));
@@ -55,9 +57,9 @@ const Auth = () => {
           margin="auto"
         >
           <Typography padding={1} variant="h4" textAlign="center">
-            {isSignup ? "Signup" : "Login"}
+            {hasSignedUp ? "Signup" : "Login"}
           </Typography>
-          {isSignup && (
+          {hasSignedUp && (
             <>
               <FormLabel>Name</FormLabel>
               <TextField
@@ -92,14 +94,14 @@ const Auth = () => {
             type="submit"
             variant="contained"
           >
-            {isSignup ? "Signup" : "Login"}
+            {hasSignedUp ? "Signup" : "Login"}
           </Button>
           <Button
-            onClick={() => setIsSignup(!isSignup)}
+            onClick={() => setHasSignedUp(!hasSignedUp)}
             sx={{ mt: 2, borderRadius: 10 }}
             variant="outlined"
           >
-            Change to {isSignup ? "Login" : "Signup"}
+            Change to {hasSignedUp ? "Login" : "Signup"}
           </Button>
         </Box>
       </form>
