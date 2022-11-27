@@ -15,14 +15,14 @@ const Home = () => {
           variant="h4"
           padding={4}
         >
-          SHARE INTRIGUING MMA STORIES HERE
+          READ INTRIGUING MMA STORIES HERE
         </Typography>
         <Box margin="auto">
           <Button
             LinkComponent={Link}
             to={`/stories`}
             variant="contained"
-            sx={{ ml: 2 }}
+            sx={{ ml: 3 }}
           >
             View Stories
           </Button>
