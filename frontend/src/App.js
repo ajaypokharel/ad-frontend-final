@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Auth from "./auth/Auth";
-import Add from "./diaries/Add";
-import Diaries from "./diaries/Diaries";
-import DiaryUpdate from "./diaries/DiaryUpdate";
+import CreatePost from "./stories/Create";
+import Stories from "./stories/Stories";
+import StoryUpdate from "./stories/StoryUpdate";
 import Header from "./header/Header";
 import Home from "./home/Home";
 import Profile from "./profile/Profile";
@@ -29,13 +29,13 @@ function App() {
       <section>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/diaries" element={<Diaries />} />
-          <Route path="/auth" element={<Auth />} />
+          <Route path="/Stories" element={<Stories />} />
+          <Route path="/signup" element={<Auth />} />
           {isLoggedIn && (
             <>
-              <Route path="/add" element={<Add />} />
+              <Route path="/create" element={<CreatePost />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/post/:id" element={<DiaryUpdate />} />{" "}
+              <Route path="/post/:id" element={<StoryUpdate />} />{" "}
             </>
           )}
         </Routes>

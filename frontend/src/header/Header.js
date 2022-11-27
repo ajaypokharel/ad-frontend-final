@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import { AppBar, Tab, Tabs, Toolbar } from "@mui/material";
-import ModeOfTravelIcon from "@mui/icons-material/ModeOfTravel";
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-const linksArr = ["home", "diaries", "auth"];
-const loggedInLinks = ["home", "diaries", "add", "profile"];
+const tabOptions = ["home", "stories", "signup"];
+const loggedInTabsOptions = ["home", "stories", "create", "profile"];
+
 const Header = () => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   const [value, setValue] = useState();
   return (
-    <AppBar sx={{ bgcolor: "transparent", position: "sticky" }}>
+    <AppBar sx={{ bgcolor: "transparent", position: "sticky", backgroundColor:"#99ccff" }}>
       <Toolbar>
-        <ModeOfTravelIcon sx={{ color: "black" }} />
+        <HistoryEduIcon LinkComponent={Link} to={`/home`} sx={{ color: "black", fontSize: 40}} />
 
         <Tabs
           value={value}
           onChange={(e, val) => setValue(val)}
-          sx={{ ml: "auto", textDecoration: "none" }}
+          sx={{ ml: "auto", }}
         >
           {isLoggedIn
-            ? loggedInLinks.map((link) => (
+            ? loggedInTabsOptions.map((tab) => (
                 <Tab
                   LinkComponent={Link}
-                  to={`/${link === "home" ? "" : link}`}
+                  to={`/${tab === "home" ? "" : tab}`}
                   sx={{
                     textDecoration: "none",
                     ":hover": {
@@ -31,11 +32,11 @@ const Header = () => {
                       textUnderlineOffset: "18px",
                     },
                   }}
-                  key={link}
-                  label={link}
+                  key={tab}
+                  label={tab}
                 />
               ))
-            : linksArr.map((link) => (
+            : tabOptions.map((link) => (
                 <Tab
                   LinkComponent={Link}
                   to={`/${link === "home" ? "" : link}`}

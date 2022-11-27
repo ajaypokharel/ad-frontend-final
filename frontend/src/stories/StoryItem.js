@@ -10,18 +10,16 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import EditLocationAltIcon from "@mui/icons-material/EditLocationAlt";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 import { postDelete } from "../api-helpers/helpers";
-const DiaryItem = ({
+const StoryItem = ({
   title,
   description,
   image,
-  location,
   date,
   id,
   user,
@@ -50,6 +48,7 @@ const DiaryItem = ({
         padding: 1,
         display: "flex",
         flexDirection: "column",
+        backgroundColor: "#ccf2ff",
         boxShadow: "5px 5px 10px #ccc",
       }}
     >
@@ -59,17 +58,12 @@ const DiaryItem = ({
             {name.charAt(0)}
           </Avatar>
         }
-        action={
-          <IconButton aria-label="settings">
-            {<EditLocationAltIcon />}
-          </IconButton>
-        }
-        title={location}
-        header={location}
+        title={title}
+        header={name}
         subheader={date}
       />
 
-      <img height="194" src={image} alt={title} />
+      <img height="60%" src={image} alt={title} />
       <CardContent>
         <Typography paddingBottom={1} variant="h6" color="text.secondary">
           {title}
@@ -111,11 +105,11 @@ const DiaryItem = ({
           severity="success"
           sx={{ width: "100%" }}
         >
-          This is a success message!
+          Successfully Deleted!
         </Alert>
       </Snackbar>
     </Card>
   );
 };
 
-export default DiaryItem;
+export default StoryItem;
