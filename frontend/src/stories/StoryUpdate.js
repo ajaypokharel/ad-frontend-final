@@ -46,16 +46,9 @@ const StoryUpdate = () => {
   return (
     <Box display="flex" flexDirection={"column"} width="100%" height="100%">
       <Box display="flex" margin="auto" padding={2}>
-        <Typography
-          fontWeight={"bold"}
-          variant="h4"
-          fontFamily={"dancing script"}
-        >
-          Add Your Travel Diary
+        <Typography fontWeight={"bold"} variant="h4">
+          Edit Your MMA Story
         </Typography>
-        <TravelExploreIcon
-          sx={{ fontSize: "40px", paddingLeft: 1, color: "lightcoral  " }}
-        />
       </Box>
       {post && (
         <form onSubmit={handleSubmit}>
@@ -93,11 +86,10 @@ const StoryUpdate = () => {
 
             <Button
               type="submit"
-              color="warning"
-              sx={{ width: "50%", margin: "auto", mt: 2, borderRadius: 7 }}
+              sx={{ width: "30%", margin: "auto", mt: 4, borderRadius: 3 }}
               variant="contained"
             >
-              Post
+              Update
             </Button>
           </Box>
         </form>
