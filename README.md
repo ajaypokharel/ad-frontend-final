@@ -2,7 +2,7 @@
 
 ## Some of the features of this blog:
 - Viewers can browse MMA Stories without creating account
-- Viewrs can sign in with email 
+- Viewers can sign in with email 
 - Users can login and logout
 - Users can create, edit, and delete blogs
 
